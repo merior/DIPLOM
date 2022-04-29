@@ -1,3 +1,3 @@
-const modal = require('./modules/modal')
+import modal from './modules/modal'
 
 modal()
