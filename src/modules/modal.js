@@ -12,11 +12,9 @@ const modal = () => {
     fancyBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
             if (btn.hash === '#callback') {
-                // console.log('#callback');
                 headerModal.style.display = 'block'
                 overlay.style.display = 'block'
             } else if (btn.hash === '#application') {
-                // console.log('no application');
                 serviceModal.style.display = 'block'
                 overlay.style.display = 'block'
                 

@@ -1678,3 +1678,8 @@ input.error {
     max-width: 576px;
   }
 }
+
+
+.not-active{
+  display: none;
+}
