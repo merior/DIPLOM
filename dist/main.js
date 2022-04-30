@@ -16,7 +16,27 @@
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_modal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/modal */ \"./src/modules/modal.js\");\n/* harmony import */ var _modules_threeslider__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/threeslider */ \"./src/modules/threeslider.js\");\n/* harmony import */ var _modules_swipeUp__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/swipeUp */ \"./src/modules/swipeUp.js\");\n/* harmony import */ var _modules_twoSlider__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/twoSlider */ \"./src/modules/twoSlider.js\");\n\r\n\r\n\r\n\r\n\r\n(0,_modules_modal__WEBPACK_IMPORTED_MODULE_0__[\"default\"])()\r\n;(0,_modules_threeslider__WEBPACK_IMPORTED_MODULE_1__[\"default\"])()\r\n;(0,_modules_swipeUp__WEBPACK_IMPORTED_MODULE_2__[\"default\"])()\r\n;(0,_modules_twoSlider__WEBPACK_IMPORTED_MODULE_3__[\"default\"])()\r\n\n\n//# sourceURL=webpack://diploma/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_modal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/modal */ \"./src/modules/modal.js\");\n/* harmony import */ var _modules_threeslider__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/threeslider */ \"./src/modules/threeslider.js\");\n/* harmony import */ var _modules_swipeUp__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/swipeUp */ \"./src/modules/swipeUp.js\");\n/* harmony import */ var _modules_twoSlider__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/twoSlider */ \"./src/modules/twoSlider.js\");\n/* harmony import */ var _modules_calc__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/calc */ \"./src/modules/calc.js\");\n/* harmony import */ var _modules_validateCalc__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/validateCalc */ \"./src/modules/validateCalc.js\");\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n(0,_modules_modal__WEBPACK_IMPORTED_MODULE_0__[\"default\"])()\r\n;(0,_modules_threeslider__WEBPACK_IMPORTED_MODULE_1__[\"default\"])()\r\n;(0,_modules_swipeUp__WEBPACK_IMPORTED_MODULE_2__[\"default\"])()\r\n;(0,_modules_twoSlider__WEBPACK_IMPORTED_MODULE_3__[\"default\"])()\r\n;(0,_modules_calc__WEBPACK_IMPORTED_MODULE_4__[\"default\"])()\r\n;(0,_modules_validateCalc__WEBPACK_IMPORTED_MODULE_5__[\"default\"])()\r\n\n\n//# sourceURL=webpack://diploma/./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/modules/calc.js":
+/*!*****************************!*\
+  !*** ./src/modules/calc.js ***!
+  \*****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./helper */ \"./src/modules/helper.js\");\n\r\n\r\nconst calc = () => {\r\n    const calcType = document.getElementById('calc-type')\r\n    const calcMaterial = document.getElementById('calc-type-material')\r\n    const calcSquare = document.getElementById('calc-input')\r\n    const total = document.getElementById('calc-total')\r\n    \r\n    console.log(total)\r\n    // let count = 0\r\n    // let intervalID\r\n\r\n    \r\n\r\n    const countCalc = () => {\r\n        const calcTypeValue = +calcType.options[calcType.selectedIndex].value\r\n        const calcMaterialValue = +calcMaterial.options[calcMaterial.selectedIndex].value\r\n        const calcSquareValue = calcSquare.value\r\n\r\n        let totalValue = 0\r\n        \r\n\r\n        \r\n\r\n        if (calcType.value && calcSquare.value){\r\n            totalValue = calcSquareValue * calcTypeValue * calcMaterialValue\r\n\r\n            ;(0,_helper__WEBPACK_IMPORTED_MODULE_0__.animate)({\r\n                duration: 1000,\r\n                timing(timeFraction) {\r\n                  return timeFraction;\r\n                },\r\n                draw(progress) {\r\n                    total.placeholder = Math.round(totalValue * progress)\r\n                }\r\n              });\r\n            \r\n        } \r\n        else{\r\n            totalValue = 0\r\n        }\r\n        \r\n\r\n\r\n        \r\n        \r\n    }\r\n\r\n    document.addEventListener('change', (e) => {\r\n        if ( e.target === calcSquare ||\r\n            e.target === calcType || e.target === calcMaterial){\r\n\r\n                countCalc()\r\n        }\r\n    })\r\n}\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (calc);\n\n//# sourceURL=webpack://diploma/./src/modules/calc.js?");
+
+/***/ }),
+
+/***/ "./src/modules/helper.js":
+/*!*******************************!*\
+  !*** ./src/modules/helper.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"animate\": () => (/* binding */ animate)\n/* harmony export */ });\n\r\n\r\nconst animate = ({timing, draw, duration}) => {\r\n\r\n    let start = performance.now();\r\n  \r\n    requestAnimationFrame(function animate(time) {\r\n      // timeFraction изменяется от 0 до 1\r\n      let timeFraction = (time - start) / duration;\r\n      if (timeFraction > 1) timeFraction = 1;\r\n  \r\n      // вычисление текущего состояния анимации\r\n      let progress = timing(timeFraction);\r\n  \r\n      draw(progress); // отрисовать её\r\n  \r\n      if (timeFraction < 1) {\r\n        requestAnimationFrame(animate);\r\n      }\r\n  \r\n    });\r\n  }\r\n\r\n  \n\n//# sourceURL=webpack://diploma/./src/modules/helper.js?");
 
 /***/ }),
 
@@ -57,6 +77,16 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst two = () => {\r\n    const cards = document.querySelectorAll('.col-md-12.col-lg-6')\r\n\r\n    const checkForInnerWidth = () => {\r\n        cards.forEach((card, i) => {\r\n            if (window.innerWidth >= 576) {\r\n                if (i > 2) {\r\n                    card.classList.add('not-active')\r\n                }\r\n            } else {\r\n                if (i > 0) {\r\n                    card.classList.add('not-active')\r\n                }\r\n            }   \r\n        })\r\n}\r\n\r\ncheckForInnerWidth()\r\n\r\n\r\ndocument.addEventListener('click', (e) => {\r\n    if (e.target.closest('.services__arrow--right')) {\r\n        cards.forEach(card => {\r\n            if (card.classList.contains('not-active')) {\r\n                card.classList.remove('not-active')\r\n            } else {\r\n                card.classList.add('not-active')\r\n            }\r\n        })\r\n    }\r\n    if (e.target.closest('.services__arrow--left')) {\r\n        cards.forEach(card => {\r\n            if (card.classList.contains('not-active')) {\r\n                card.classList.remove('not-active')\r\n            } else {\r\n                card.classList.add('not-active')\r\n            }\r\n        })\r\n    }\r\n})\r\n}\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (two);\n\n//# sourceURL=webpack://diploma/./src/modules/twoSlider.js?");
+
+/***/ }),
+
+/***/ "./src/modules/validateCalc.js":
+/*!*************************************!*\
+  !*** ./src/modules/validateCalc.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst validate = () => {\r\n    const calcSquare = document.getElementById('calc-input')\r\n\r\n    const numberEnable = (e) => {\r\n        e.target.value = e.target.value.replace(/\\D+/, \"\")  \r\n    }\r\n    calcSquare.addEventListener('input', numberEnable)\r\n}\r\n\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (validate);\n\n//# sourceURL=webpack://diploma/./src/modules/validateCalc.js?");
 
 /***/ })
 
