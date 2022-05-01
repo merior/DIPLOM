@@ -1,13 +1,18 @@
 const timer = (discount) => {
-    const timerDaysBox = document.querySelector('.count_1')
-    const timerHoursBox = document.querySelector('.count_2')
-    const timerMinutesBox = document.querySelector('.count_3')
-    const timerSecondsBox = document.querySelector('.count_4')
+    const timerDaysBoxs = document.querySelectorAll('.count_1')
+    const timerHoursBoxs = document.querySelectorAll('.count_2')
+    const timerMinutesBoxs = document.querySelectorAll('.count_3')
+    const timerSecondsBoxs = document.querySelectorAll('.count_4')
 
-    const timerDays = timerDaysBox.lastElementChild
-    const timerHours = timerHoursBox.lastElementChild
-    const timerMinutes = timerMinutesBox.lastElementChild
-    const timerSeconds = timerSecondsBox.lastElementChild
+    const timerDaysBoxF = timerDaysBoxs[0]
+    const timerHoursBoxF = timerHoursBoxs[0]
+    const timerMinutesBoxF = timerMinutesBoxs[0]
+    const timerSecondsBoxF = timerSecondsBoxs[0]
+    
+    const timerDays = timerDaysBoxF.lastElementChild
+    const timerHours = timerHoursBoxF.lastElementChild
+    const timerMinutes = timerMinutesBoxF.lastElementChild
+    const timerSeconds = timerSecondsBoxF.lastElementChild
 
     let intervalID
 
@@ -35,7 +40,7 @@ const timer = (discount) => {
             intervalID = setInterval(() => {
                             updateClock()
                         }, 1000);
-        } else if (getTime.timeRemaining < 0) {
+        } else if (getTime.timeRemaining <= 0) {
             timerDays.textContent = '00'
             timerHours.textContent = '00'
             timerMinutes.textContent = '00'
@@ -43,20 +48,27 @@ const timer = (discount) => {
             clearInterval(intervalID)
         }
         const zeroToNumber = () => {
-            if (getTime.days < 10) {
+            if (getTime.days < 10 && getTime.days >= 0) {
                 timerDays.textContent = '0' + getTime.days
             } 
-            if (getTime.hours < 10) {
+            if (getTime.hours < 10 && getTime.days >= 0) {
                 timerHours.textContent = '0' + getTime.hours
             }
-            if (getTime.minutes < 10) {
+            if (getTime.minutes < 10 && getTime.days >= 0) {
                 timerMinutes.textContent = '0' + getTime.minutes
             }
-            if (getTime.seconds < 10) {
+            if (getTime.seconds < 10 && getTime.days >= 0) {
                 timerSeconds.textContent = '0' + getTime.seconds
             }
         }
+        const timeEqualify = () => {
+            timerDaysBoxs[1].lastElementChild.textContent = timerDays.textContent
+            timerHoursBoxs[1].lastElementChild.textContent = timerHours.textContent
+            timerMinutesBoxs[1].lastElementChild.textContent = timerMinutes.textContent
+            timerSecondsBoxs[1].lastElementChild.textContent = timerSeconds.textContent
+        }
         zeroToNumber()
+        timeEqualify()
     }
     updateClock()
 }
