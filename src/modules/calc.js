@@ -22,7 +22,7 @@ const calc = () => {
 
         
 
-        if (calcType.value && calcSquare.value){
+        if (calcType.value && calcSquare.value && calcMaterial.value){
             totalValue = calcSquareValue * calcTypeValue * calcMaterialValue
 
             animate({
