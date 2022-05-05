@@ -1,5 +1,5 @@
 import { animate } from './helper'
-import calcValidate from './validateCalc'
+import validate from './validate'
 
 const calculatorCounter = () => {
     const calcSection = document.getElementById('calc')
@@ -42,7 +42,7 @@ const calculatorCounter = () => {
                     countCalc()
             }
         })
-        calcValidate()
+        validate()
     }
 }
 export default calculatorCounter

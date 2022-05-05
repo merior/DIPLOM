@@ -1,4 +1,4 @@
-const calcValidate = () => {
+const validate = () => {
     const calcSquare = document.getElementById('calc-input')
 
     const numberEnable = (e) => {
@@ -7,4 +7,4 @@ const calcValidate = () => {
     calcSquare.addEventListener('input', numberEnable)
 }
 
-export default calcValidate
+export default validate
