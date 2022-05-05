@@ -1,6 +1,5 @@
-import { animate } from './helper'
-import validate from './validate'
-
+import { animate } from './helpers'
+import calculatorValidator from './calculatorValidator'
 const calculatorCounter = () => {
     const calcSection = document.getElementById('calc')
     const calcType = document.getElementById('calc-type')
@@ -42,7 +41,7 @@ const calculatorCounter = () => {
                     countCalc()
             }
         })
-        validate()
+        calculatorValidator()
     }
 }
 export default calculatorCounter

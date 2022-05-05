@@ -1,7 +1,8 @@
-const up = () => {
+const toTop = () => {
     const smoothScrollBtn = document.querySelector('.smooth-scroll')
 
     smoothScrollBtn.style.display = 'none'
+    smoothScrollBtn.style.cursor = 'pointer'
     
     const trackingScroll = () => {
         let scrolled = window.scrollY
@@ -21,4 +22,4 @@ const up = () => {
     smoothScrollBtn.addEventListener('click', topFunction)
     window.addEventListener('scroll', trackingScroll)
 }
-export default up
+export default toTop

@@ -1,13 +1,13 @@
-
 const modal = () => {
     const headerModal = document.querySelector('.header-modal')
     const serviceModal = document.querySelector('.services-modal')
 
     const overlay = document.querySelector('.overlay')
 
-    const closeHeaderModalBtn = document.querySelector('.header-modal__close')
-    const closeServiceModalBtn = document.querySelector('.services-modal__close')
+    const closeBtns = document.querySelectorAll('[title="Close"]')
     const fancyBtns = document.querySelectorAll('.fancyboxModal')
+
+    // console.log(closeBtns);
 
     fancyBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
@@ -24,14 +24,12 @@ const modal = () => {
         })
     })
 
-    closeHeaderModalBtn.addEventListener('click', () => {
-        headerModal.style.display = 'none'
-        overlay.style.display = 'none'
+    closeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            headerModal.style.display = 'none'
+            overlay.style.display = 'none'
+            serviceModal.style.display = 'none'
+        })
     })
-    closeServiceModalBtn.addEventListener('click', () => {
-        serviceModal.style.display = 'none'
-        overlay.style.display = 'none'
-    })
-    
 }
 export default modal
