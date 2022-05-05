@@ -5,7 +5,7 @@ import twoSloder from './modules/twoSlider'
 import calc from './modules/calc'
 // import validateCalc from './modules/validateCalc'
 import timer from  './modules/timer'
-import form from './modules/form'
+import sendForm from './modules/form'
 import imageZoom from './modules/imageZoom'
 
 modal()
@@ -16,19 +16,21 @@ calc()
 // validateCalc()
 timer('1 may 2022')
 imageZoom()
-form({
-    formId: '[name = "action-form"]', 
-    someElem: [
-        {
-            type: 'block',
-        }
-    ] 
-})
-formSender({
-    formId: '[name = "action-form2"]', 
-    someElem: [
-        {
-            type: 'block',
-        }
-    ] 
+
+const forms = document.querySelectorAll('form')
+forms.forEach((form, index) => {
+    form.addEventListener('submit', (e) => {
+        e.preventDefault()
+        form.id = `form${index}`
+        
+        sendForm({
+            formId: `form${index}`,
+            someElem: [
+                {
+                    type: 'block',
+                    id: 'calc-total'
+                }
+            ] 
+        })
+    })
 })

@@ -1,15 +1,31 @@
-import validator from './validate'
 
-const form = ({formId, someElem = [] }) => {
-    const form = document.querySelector(formId)
+const form = ({ formId, someElem = [] }) => {
+    const form = document.getElementById(formId)
     const statusBlock = document.createElement('div')
 
-    const inputPhone = document.querySelectorAll('[name="phone"]')
-    const inputName = document.querySelectorAll('[name="fio"]')
+    const loadText = 'Загрузка...'
+    const errorText = 'Ошибка...'
+    const successText = 'Спасибо! Наш менеджер с вами свяжется'
 
-    const loadText = 'Идет загрузка. Подождите.'
-    const errorText = 'Что-то пошло не так.'
-    const successText = 'Успешно. С Вами свяжутся.'
+    const validate = (formElements) => {
+        let success = true
+        formElements.forEach(input => {
+           if (input.name == 'fio') {
+                if (input.value === '') {
+                    success = false
+                } else if (input.value.match(/[^а-яА-Я\^a-zA-Z\s]/g)) {
+                    success = true
+                }
+            } else if (input.name == 'phone') {
+                if (input.value === '') {
+                    success = false
+                } else if (input.value.match(/[^0-9\(\)\+\-]/g)) {
+                    success = true
+                }
+            } 
+        })
+        return success
+    }
 
     const sendData = (data) => {
         return fetch('https://jsonplaceholder.typicode.com/posts', {
@@ -47,7 +63,7 @@ const form = ({formId, someElem = [] }) => {
             
         })
 
-        if (validator(formElements)) {
+        if (validate(formElements)) {
             sendData(formBody)
                 .then(data => {
                     statusBlock.textContent = successText
@@ -68,20 +84,17 @@ const form = ({formId, someElem = [] }) => {
             statusBlock.textContent = errorText
         }
     }
-    
+
     try {
         if (!form) {
-            throw new Error ('Проблемы с формой')
+            throw new Error ('Верните форму')
         }
-
-        form.addEventListener('submit', (event) => {
-            event.preventDefault()
-    
-            submitForm()
-        })
+        submitForm()
     } catch (error) {
         console.log(error.message);
     }
+    
+    
 }
 
 export default form
