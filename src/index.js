@@ -5,6 +5,7 @@ import modal from './modules/modal'
 import sliders from './modules/sliders'
 import timer from './modules/timer'
 import toTop from './modules/toTop'
+import menu from './modules/menu'
 
 
 sliders()
@@ -13,6 +14,7 @@ toTop()
 timer('8 may 2022')
 calculatorCounter()
 imageZoom()
+menu()
 const forms = document.querySelectorAll('form')
 forms.forEach((form, index) => {
     form.addEventListener('submit', (e) => {
